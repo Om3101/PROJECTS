@@ -1,0 +1,53 @@
+def display_list():
+    print("----------X----------")
+    print("1. View Tasks")
+    print("2. Add a task")
+    print("3. Delete a task")
+    print("4. Exit")
+    
+
+def view_tasks(tasks):
+    if not tasks:
+        print("\nEmpty List!\n")
+    else:
+        print("List:")
+        for index, task in enumerate(tasks, start=1):
+            print(f"{index}. {task}")
+
+def add_task(tasks):
+    task = input("\nEnter task to add: ")
+    tasks.append(task)
+    print("\nTask added Successfully.\n")
+
+def delete_task(tasks):
+    view_tasks(tasks)
+    if tasks:
+        try:
+            task_no = int(input("\nEnter the task number to delete: "))
+            if 1 <= task_no <= len(tasks):
+                removed_task = tasks.pop(task_no - 1)
+                print(f"\nTask Deleted Successfully: {removed_task}\n")
+            else:
+                print("\nInvalid task number.\n")
+        except ValueError:
+            print("\nPlease enter a valid number.\n")
+
+def main():
+    tasks = []
+    while True:
+        display_list()
+        choice = input("\nSelect an option: ")
+        if choice == '1':
+            view_tasks(tasks)
+        elif choice == '2':
+            add_task(tasks)
+        elif choice == '3':
+            delete_task(tasks)
+        elif choice == '4':
+            print("Exiting!")
+            break
+        else:
+            print("\nInvalid option!")
+
+if __name__ == "__main__":
+    main()
